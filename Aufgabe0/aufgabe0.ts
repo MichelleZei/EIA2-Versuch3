@@ -8,7 +8,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
 Er wurde nicht kopiert und auch nicht diktiert.
 */
 
-namespace Aufgabe1{
+namespace Aufgabe0{
     //Nachdem die Seite geladen hat, wird die Funktion "main" aufgerufen.
     document.addEventListener("DOMContentLoaded", main);
     
