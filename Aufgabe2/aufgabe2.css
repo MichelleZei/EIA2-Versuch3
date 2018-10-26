@@ -6,3 +6,61 @@ Datum: 18.10.2018
 	
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
+
+.nachziehstapel{
+	position: absolute;
+	height:200px;
+    width: 100px;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    left: 200px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.ablagestapel{
+	position: absolute;
+	left:500px;
+	height:200px;
+    width: 100px;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.handkarten{
+	position: absolute;
+	top: 25em;	
+	height: 200px;
+	width:100px;
+	float: left;
+	padding: 5px;
+	margin:5px;
+	border: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.B{
+	background-color: blue;
+}
+
+.R{
+	background-color: red;
+}
+.G{
+	background-color: green;
+}
+
+.Y{
+	background-color: yellow;
+}
+.W{
+	background-color: black;
+	color: white;
+}

@@ -10,57 +10,30 @@ Er wurde nicht kopiert und auch nicht diktiert.
 var Aufgabe2;
 (function (Aufgabe2) {
     window.addEventListener("load", main);
-    let karten = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10", "11", "11", "12", "12", "13", "13", "14", "14", "15", "15", "16", "16"];
+    let karten = ["B0", "B1", "B1", "B2", "B2", "B3", "B3", "B4", "B4", "B5", "B5", "B6", "B6", "B7", "B7", "B8", "B8", "B9", "B9", "R0", "R1", "R1", "R2", "R2", "R3", "R3", "R4", "R4", "R5", "R5", "R6", "R6", "R7", "R7", "R8", "R8", "R9", "R9", "G0", "G1", "G1", "G2", "G2", "G3", "G3", "G4", "G4", "G5", "G5", "G6", "G6", "G7", "G7", "G8", "G8", "G9", "G9", "Y0", "Y1", "Y1", "Y2", "Y2", "Y3", "Y3", "Y4", "Y4", "Y5", "Y5", "Y6", "Y6", "Y7", "Y7", "Y8", "Y8", "Y9", "Y9", "B Aussetzen", "B Aussetzen", "R Aussetzen", "R Aussetzen", "G Aussetzen", "B Aussetzen", "Y Aussetzen", "Y Aussetzen", "B Richtungswechsel", "B Richtungswechsel", "R Richtungswechsel", "R Richtungswechsel", "G Richtungswechsel", "G Richtungswechsel", "Y Richtungswechsel", "Y Richtungswechsel", "B+2", "B+2", "R+2", "R+2", "G+2", "G+2", "Y+2", "Y+2", "W�nscher", "W�nscher", "W�nscher", "W�nscher", "W�nscher + 4", "W�nscher + 4", "W�nscher + 4", "W�nscher + 4"];
+    let maxHand = prompt("Gib die Anzahld einer Handkarten ein (Ziffer 5-9)");
+    console.log(karten.length);
     function main() {
         /*Test*/
         console.log(karten);
-        let maxHand = prompt("Gib die Anzahld einer Handkarten ein (Ziffer 5-9)");
-        var ueberschrift = document.createElement("h1");
-        ueberschrift.innerText = "UNO";
-        document.body.appendChild(ueberschrift);
         var nachziehstapel = document.createElement("div");
         nachziehstapel.innerText = "Nachziehstapel";
         document.body.appendChild(nachziehstapel);
-        let n = nachziehstapel.style;
-        n.position = "absolute";
-        n.height = "200px";
-        n.width = "100px";
-        n.backgroundColor = "red";
-        n.cssFloat = "left";
-        n.margin = "5px";
-        n.padding = "5px";
-        n.left = "200px";
+        nachziehstapel.className = "nachziehstapel";
         var ablagestapel = document.createElement("div");
         ablagestapel.innerText = "Ablagestapel";
         document.body.appendChild(ablagestapel);
-        let a = ablagestapel.style;
-        a.position = "absolute";
-        a.height = "200px";
-        a.width = "100px";
-        a.backgroundColor = "green";
-        a.cssFloat = "left";
-        a.margin = "5px";
-        a.padding = "5px";
-        a.left = "500px";
+        ablagestapel.className = "ablagestapel";
         for (let i = 0; i < parseInt(maxHand); i++) {
             var handKarten = document.createElement("div");
-            let t = Math.floor(Math.random() * 32);
-            handKarten.innerText = karten[t];
-            console.log(t);
+            let t = Math.floor(Math.random() * karten.length);
+            handKarten.innerText = karten[t].substring(1);
             document.body.appendChild(handKarten);
             let h = handKarten.style;
+            handKarten.className = "handkarten " + karten[t].substring(0, 1);
+            console.log(handKarten.className);
+            console.log("Substring " + karten[t].substring(0, 1));
             let z = i * 200;
-            h.border = "1px";
-            h.borderColor = "black";
-            h.borderStyle = "solid";
-            h.position = "absolute";
-            h.height = "200px";
-            h.width = "100px";
-            /*            h.backgroundColor = "blue";*/
-            h.cssFloat = "left";
-            h.margin = "5px";
-            h.padding = "5px";
-            h.top = "350px";
             h.left = String(z) + "px";
             karten.splice(t, 1);
             console.log(karten);
