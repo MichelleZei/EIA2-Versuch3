@@ -1,0 +1,21 @@
+#preis{
+	position: absolute;
+	top: 30%;
+	right:5%;
+	max-width:20%;
+}
+
+.fieldset12{
+	position: relative;
+	max-width: 60%;
+}
+
+input:invalid {
+	background: rot;
+}
+input:valid {
+	background: white;
+}
+input:required {
+	background: #e6e6e6;
+}
