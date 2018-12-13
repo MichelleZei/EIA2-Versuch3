@@ -5,7 +5,7 @@
 	"author": "Michelle",
 	"main": "Server.js",
 	"scripts": {
-		"start": "node node3/Server.js"
+		"start": "node Server.js"
 	},
 	"engines": {
 		"node": "8.10.0"
