@@ -13,14 +13,16 @@
 <title>Aufgabe5</title>
 <script type="text/javascript" src="aufgabe5.js"></script>
 <script type="text/javascript" src="haendler.js"></script>
-<!--  - -><script src="Server/SendData.js" type="text/javascript" charset="utf-8"></script><!--  -->
+
 </head>
 
 <body>
 	<h1>Weihnachtsbaumkonfigurator</h1>
-	<form id="form" action="aufgabe5.html" method="get">
+	<!--  - -><form id="form" action="aufgabe5.html" method="get"><!--  -->
+	<!--  --><form id="form" action="http://ws1819.herokuapp.com" method="get"><!--  -->
+	<!--  - -><form id="form" action="http://localhost:8100" method="get"><!--  -->
 		<fieldset class="fieldset12">
-			<legend>Persönliche Daten</legend>
+			<!--  - -><legend>Persönliche Daten</legend>
 			Name <input type="text" name="Text" placeholder="type here" required />
 			<hr />
 			Nachname <input type="text" name="Text" placeholder="type here"
@@ -34,7 +36,7 @@
 				placeholder="Straße" required />
 			<hr />
 			Mail <input type="email" name="Mail" placeholder="place @ between" />
-			<hr />
+			<hr /><!--  -->
 		</fieldset>
 	</form>
 </body>
