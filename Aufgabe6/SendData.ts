@@ -13,30 +13,30 @@ namespace Aufgabe6 {
 
     function sendRequest(): void {
         
-        interface Bestellung{
-            baumart: string;
-            rot: string;
-            gruen:string;
-            blau: string;
-            lametta:string;    
-        }
+//        interface Bestellung{
+//            baumart: string;
+//            rot: string;
+//            gruen:string;
+//            blau: string;
+//            lametta:string;    
+//        }
+//        
+//        let bestellung: Bestellung;
+//        
+//        bestellung = {
+//            baumart: inputs[0].value,
+//            rot: inputs[1].value,
+//            gruen: inputs[2].value,
+//            blau: inputs[3].value,
+//            lametta: inputs[4].value,  
+//        }
         
-        let bestellung: Bestellung;
-        
-        bestellung = {
-            baumart: inputs[0].value,
-            rot: inputs[1].value,
-            gruen: inputs[2].value,
-            blau: inputs[3].value,
-            lametta: inputs[4].value,  
-        }
-        
-        let stringifyJSON: string = JSON.stringify(bestellung);
+        //let stringifyJSON: string = JSON.stringify(bestellung);
         // JavaScript-JSON-Objekt wird in einen string umgewandelt
-        console.log(stringifyJSON);
+        //console.log(stringifyJSON);
 
         let xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("GET", address + "?" + stringifyJSON, true);
+        xhr.open("GET", address + "?", true);
         xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
     }
