@@ -1,7 +1,7 @@
 {
 	"name": "MiniServer",
 	"version": "1.0.0",
-	"description": "Minimal server just bouncing the URL",
+	"description": "Miniserver",
 	"author": "Michelle",
 	"main": "Server.js",
 	"scripts": {

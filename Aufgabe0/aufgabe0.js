@@ -7,8 +7,8 @@ Datum: 08.10.18
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
 Er wurde nicht kopiert und auch nicht diktiert.
 */
-var Aufgabe1;
-(function (Aufgabe1) {
+var Aufgabe0;
+(function (Aufgabe0) {
     //Nachdem die Seite geladen hat, wird die Funktion "main" aufgerufen.
     document.addEventListener("DOMContentLoaded", main);
     //Variable mit dem Namen "name" mit dem Typ "string wird angelegt.
@@ -23,5 +23,5 @@ var Aufgabe1;
         //Kontrolle, ob die html die (richtige) ts-Datei aufruft.
         console.log("Hello World");
     }
-})(Aufgabe1 || (Aufgabe1 = {}));
+})(Aufgabe0 || (Aufgabe0 = {}));
 //# sourceMappingURL=aufgabe0.js.map
