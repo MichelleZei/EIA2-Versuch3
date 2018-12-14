@@ -117,6 +117,7 @@ namespace Aufgabe5 {
 
         let form: HTMLElement = document.getElementById("form");
         form.appendChild(button);
+        
     }
 
     function createOutput(_sum: number): void {
@@ -173,4 +174,5 @@ namespace Aufgabe5 {
 
         deleteout.remove();
     }
+    
 }
