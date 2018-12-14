@@ -18,6 +18,7 @@ var Aufgabe5;
         console.log("I hear voices!");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
+        //let query: Object = Url.parse(_request.url, true).query;
         //        _response.write(_request.url);
         let url = Url.parse(_request.url, true);
         for (let key in url.query)

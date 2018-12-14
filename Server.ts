@@ -3,6 +3,19 @@ import * as Url from "url";
 
 namespace Aufgabe5 {
     console.log("Starting server");
+
+    interface Bestellung {
+        baumart: string;
+        rot: string;
+        gruen: string;
+        blau: string;
+        lametta: string;
+    }
+
+    interface Objekt {
+        [key: string]: string;
+    }
+
     let port: number = process.env.PORT;
     if (port == undefined)
         port = 8100;
@@ -22,11 +35,15 @@ namespace Aufgabe5 {
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
-//        _response.write(_request.url);
-        let url: Url.Url = Url.parse(_request.url, true);
+        //let query: Object = Url.parse(_request.url, true).query;
+
+
+        //        _response.write(_request.url);
+               let url: Url.Url = Url.parse(_request.url, true);
         for (let key in url.query)
             _response.write(key + ":" + url.query[key] + "<br/>");
-        console.log(_request.url)
+        console.log(_request.url);
         _response.end();
+        
     }
 }
