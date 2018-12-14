@@ -13,6 +13,7 @@ var Aufgabe6;
     window.addEventListener("load", init);
     let output;
     let auswahl;
+    Aufgabe6.createURL = "?";
     function init(_event) {
         console.log(Aufgabe6.data);
         createBaumart(Aufgabe6.data);
@@ -91,7 +92,7 @@ var Aufgabe6;
     }
     function createButton() {
         let button = document.createElement("button");
-        button.type = "submit";
+        button.type = "button";
         button.innerText = "Senden";
         let form = document.getElementById("form");
         form.appendChild(button);
@@ -114,13 +115,16 @@ var Aufgabe6;
         let sum = 0;
         for (let i = 0; i < inputs.length; i++) {
             let preis = parseFloat(inputs[i].getAttribute("preis"));
+            let name = inputs[i].name;
             if (inputs[i].getAttribute("preis") != null) {
                 if (inputs[i].value != " " && parseFloat(inputs[i].value) > 0) {
                     sum += preis * parseFloat(inputs[i].value);
-                    console.log("Preis " + preis);
+                    console.log("Preis: " + preis * parseFloat(inputs[i].value) + " Name: " + name);
+                    Aufgabe6.createURL += name + "=" + parseFloat(inputs[i].value) + "&";
                 }
                 if (inputs[i].checked) {
                     sum += preis;
+                    Aufgabe6.createURL += name + "=" + preis + "&";
                 }
             }
         }
@@ -129,8 +133,10 @@ var Aufgabe6;
             if (option[i].selected == true) {
                 let optpreis = parseFloat(option[i].getAttribute("preis"));
                 sum += optpreis;
+                Aufgabe6.createURL += Aufgabe6.data["Baeume"][i].name + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
             }
         }
+        console.log(Aufgabe6.createURL);
         createOutput(sum);
     }
     function deleteoutput() {
