@@ -39,12 +39,12 @@ namespace Aufgabe5 {
         //_response.write(_request.url);
         let url: Url.Url = Url.parse(_request.url, true);
         
-        let jsonString: string = JSON.stringify(url.query);
-        console.log(jsonString);
+        let objekt: string = JSON.stringify(url.query);
+        console.log(objekt);
 //        for(let key in jsonString){
 //            
 //        }
-        _response.write(jsonString);
+        _response.write(objekt);
         
 //        for (let key in url.query)
 //            _response.write(key + ":" + url.query[key] + "<br/>");

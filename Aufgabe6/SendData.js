@@ -32,13 +32,14 @@ var Aufgabe6;
         // JavaScript-JSON-Objekt wird in einen string umgewandelt
         //console.log(stringifyJSON);
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", address + "?", true);
+        xhr.open("GET", address + Aufgabe6.createURL, true);
         xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
     }
     function handleStateChange(_event) {
         var xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            let response = xhr.response.JSON.parse;
             alert("Deine Bestellung: " + xhr.response);
         }
     }

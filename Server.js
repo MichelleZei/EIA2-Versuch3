@@ -21,12 +21,12 @@ var Aufgabe5;
         //let query: Object = Url.parse(_request.url, true).query;
         //_response.write(_request.url);
         let url = Url.parse(_request.url, true);
-        let jsonString = JSON.stringify(url.query);
-        console.log(jsonString);
+        let objekt = JSON.stringify(url.query);
+        console.log(objekt);
         //        for(let key in jsonString){
         //            
         //        }
-        _response.write(jsonString);
+        _response.write(objekt);
         //        for (let key in url.query)
         //            _response.write(key + ":" + url.query[key] + "<br/>");
         //        console.log(_request.url);

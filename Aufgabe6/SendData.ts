@@ -36,7 +36,7 @@ namespace Aufgabe6 {
         //console.log(stringifyJSON);
 
         let xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("GET", address + "?", true);
+        xhr.open("GET", address + createURL, true);
         xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
     }
@@ -44,7 +44,7 @@ namespace Aufgabe6 {
     function handleStateChange(_event: ProgressEvent): void{
         var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            
+            let response: string = xhr.response.JSON.parse;
             alert("Deine Bestellung: " + xhr.response);
         }
     }
