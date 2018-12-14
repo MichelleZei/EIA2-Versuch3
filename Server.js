@@ -1,7 +1,8 @@
 "use strict";
 const Http = require("http");
-var L06_SendData;
-(function (L06_SendData) {
+const Url = require("url");
+var Aufgabe5;
+(function (Aufgabe5) {
     console.log("Starting server");
     let port = process.env.PORT;
     if (port == undefined)
@@ -17,8 +18,11 @@ var L06_SendData;
         console.log("I hear voices!");
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
-        _response.write(_request.url);
+        //        _response.write(_request.url);
+        let url = Url.parse(_request.url, true);
+        for (let key in url.query)
+            _response.write(key + ":" + url.query[key] + "<br/>");
         _response.end();
     }
-})(L06_SendData || (L06_SendData = {}));
+})(Aufgabe5 || (Aufgabe5 = {}));
 //# sourceMappingURL=Server.js.map
