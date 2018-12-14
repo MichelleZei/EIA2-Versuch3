@@ -49,6 +49,7 @@ namespace Aufgabe6 {
             option.innerText = data["Baeume"][i].name;
             //option.value = data["Baeume"][i].preis.toString();
             option.setAttribute("preis", data["Baeume"][i].preis.toString());
+            option.id = data["Baeume"][i].name;
             select.appendChild(option);
 
         }
@@ -140,7 +141,7 @@ namespace Aufgabe6 {
         if (out.length == 1) {
 
             deleteoutput();
-
+            createURL = " ";
         }
 
         let sum: number = 0;
@@ -168,7 +169,7 @@ namespace Aufgabe6 {
 
                 let optpreis: number = parseFloat(option[i].getAttribute("preis"));
                 sum += optpreis;
-                createURL += data["Baeume"][i].name + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
+                createURL += option[i].id + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
             }
         }
         console.log(createURL);

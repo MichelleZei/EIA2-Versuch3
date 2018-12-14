@@ -8,29 +8,8 @@ var Aufgabe6;
         console.log("Hwllo");
         let button = document.getElementsByTagName("button")[0];
         button.addEventListener("click", sendRequest);
-        // sendRequest();
     }
     function sendRequest() {
-        //        interface Bestellung{
-        //            baumart: string;
-        //            rot: string;
-        //            gruen:string;
-        //            blau: string;
-        //            lametta:string;    
-        //        }
-        //        
-        //        let bestellung: Bestellung;
-        //        
-        //        bestellung = {
-        //            baumart: inputs[0].value,
-        //            rot: inputs[1].value,
-        //            gruen: inputs[2].value,
-        //            blau: inputs[3].value,
-        //            lametta: inputs[4].value,  
-        //        }
-        //let stringifyJSON: string = JSON.stringify(bestellung);
-        // JavaScript-JSON-Objekt wird in einen string umgewandelt
-        //console.log(stringifyJSON);
         let xhr = new XMLHttpRequest();
         xhr.open("GET", address + Aufgabe6.createURL, true);
         xhr.addEventListener("readystatechange", handleStateChange);
@@ -39,8 +18,14 @@ var Aufgabe6;
     function handleStateChange(_event) {
         var xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            let response = xhr.response.JSON.parse;
-            alert("Deine Bestellung: " + xhr.response);
+            let response = JSON.parse(xhr.response);
+            console.log(response);
+            for (let key in response) {
+                let div = document.createElement("div");
+                div.innerText = "Hi";
+                let button = document.getElementsByTagName("button")[0];
+                button.appendChild(div);
+            }
         }
     }
 })(Aufgabe6 || (Aufgabe6 = {}));

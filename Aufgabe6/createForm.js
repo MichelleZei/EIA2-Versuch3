@@ -39,6 +39,7 @@ var Aufgabe6;
             option.innerText = Aufgabe6.data["Baeume"][i].name;
             //option.value = data["Baeume"][i].preis.toString();
             option.setAttribute("preis", Aufgabe6.data["Baeume"][i].preis.toString());
+            option.id = Aufgabe6.data["Baeume"][i].name;
             select.appendChild(option);
         }
         let form = document.getElementById("form");
@@ -111,6 +112,7 @@ var Aufgabe6;
         console.log(out);
         if (out.length == 1) {
             deleteoutput();
+            Aufgabe6.createURL = " ";
         }
         let sum = 0;
         for (let i = 0; i < inputs.length; i++) {
@@ -133,7 +135,7 @@ var Aufgabe6;
             if (option[i].selected == true) {
                 let optpreis = parseFloat(option[i].getAttribute("preis"));
                 sum += optpreis;
-                Aufgabe6.createURL += Aufgabe6.data["Baeume"][i].name + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
+                Aufgabe6.createURL += option[i].id + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
             }
         }
         console.log(Aufgabe6.createURL);
