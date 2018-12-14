@@ -40,6 +40,10 @@ namespace Aufgabe5 {
         let url: Url.Url = Url.parse(_request.url, true);
         
         let jsonString: string = JSON.stringify(url.query);
+        console.log(jsonString);
+//        for(let key in jsonString){
+//            
+//        }
         _response.write(jsonString);
         
 //        for (let key in url.query)
