@@ -26,7 +26,7 @@ namespace Aufgabe5 {
         let url: Url.Url = Url.parse(_request.url, true);
         for (let key in url.query)
             _response.write(key + ":" + url.query[key] + "<br/>");
-
+        console.log(_request.url)
         _response.end();
     }
 }
