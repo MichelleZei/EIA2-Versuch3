@@ -13,7 +13,8 @@ namespace Aufgabe6 {
     window.addEventListener("load", init);
     let output: HTMLElement
     let auswahl: HeteroPredef[];
-
+    export let createURL: string = "?";
+    
     function init(_event: Event): void {
         console.log(data);
 
@@ -112,12 +113,11 @@ namespace Aufgabe6 {
 
     function createButton(): void {
         let button: HTMLButtonElement = document.createElement("button");
-        button.type = "submit";
+        button.type = "button";
         button.innerText = "Senden";
 
         let form: HTMLElement = document.getElementById("form");
         form.appendChild(button);
-        
     }
 
     function createOutput(_sum: number): void {
@@ -131,29 +131,33 @@ namespace Aufgabe6 {
     }
 
     function handleChange(_event: Event): void {
+
         let inputs: NodeListOf<HTMLInputElement> = <NodeListOf<HTMLInputElement>>document.body.querySelectorAll("input");
         console.log(inputs);
 
         let out: NodeListOf<HTMLElement> = <NodeListOf<HTMLElement>>document.getElementsByTagName("output");
         console.log(out);
         if (out.length == 1) {
-            
+
             deleteoutput();
-            
+
         }
 
         let sum: number = 0;
 
         for (let i: number = 0; i < inputs.length; i++) {
             let preis: number = parseFloat(inputs[i].getAttribute("preis"));
-
+            let name: string = inputs[i].name;
             if (inputs[i].getAttribute("preis") != null) {
                 if (inputs[i].value != " " && parseFloat(inputs[i].value) > 0) {
                     sum += preis * parseFloat(inputs[i].value);
-                    console.log("Preis " + preis);
+                    console.log("Preis: " + preis * parseFloat(inputs[i].value) + " Name: " + name);
+                    createURL += name + "=" + parseFloat(inputs[i].value) + "&";
                 }
-                if(inputs[i].checked){
+                if (inputs[i].checked) {
                     sum += preis;
+                    createURL += name + "=" + preis + "&";
+
                 }
             }
         }
@@ -164,8 +168,10 @@ namespace Aufgabe6 {
 
                 let optpreis: number = parseFloat(option[i].getAttribute("preis"));
                 sum += optpreis;
+                createURL += data["Baeume"][i].name + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
             }
         }
+        console.log(createURL);
         createOutput(sum);
     }
 
@@ -174,5 +180,5 @@ namespace Aufgabe6 {
 
         deleteout.remove();
     }
-    
+
 }
