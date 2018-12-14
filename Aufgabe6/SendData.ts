@@ -3,6 +3,7 @@ namespace Aufgabe6 {
     //let address: string = "http://localhost:8100";
     let address: string = "http://ws1819.herokuapp.com";
     let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
+    
     function init(_event: Event): void {
         console.log("Hwllo");
         let button: HTMLButtonElement = document.getElementsByTagName("button")[0];
@@ -19,7 +20,9 @@ namespace Aufgabe6 {
             blau: string;
             lametta:string;    
         }
+        
         let bestellung: Bestellung;
+        
         bestellung = {
             baumart: inputs[0].value,
             rot: inputs[1].value,
@@ -34,7 +37,6 @@ namespace Aufgabe6 {
 
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", address + "?" + stringifyJSON, true);
-        
         xhr.addEventListener("readystatechange", handleStateChange);
         xhr.send();
     }
