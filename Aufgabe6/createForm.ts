@@ -141,7 +141,7 @@ namespace Aufgabe6 {
         if (out.length == 1) {
 
             deleteoutput();
-            createURL = " ";
+            createURL = "?";
         }
 
         let sum: number = 0;

@@ -27,14 +27,21 @@ namespace Aufgabe6 {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let response: Objekt = JSON.parse(xhr.response);
             console.log(response);
+            let div: HTMLDivElement;
+            let hZwei: HTMLHeadingElement = document.createElement("h2");
+            hZwei.innerText =  "Deine Bestellung war erfolgreich. Du hast folgendes bestellt: ";
+            let hEins: HTMLHeadingElement = document.getElementsByTagName("h1")[0];
+            let form: HTMLElement = document.getElementsByTagName("form")[0];
+            hEins.appendChild(hZwei);
+            form.remove();
             for (let key in response){
-                let div: HTMLDivElement = document.createElement("div");
-                div.innerText = "Hi";
-                
-                let button: HTMLButtonElement = document.getElementsByTagName("button")[0];
-                button.appendChild(div);
+                div = document.createElement("div");
+                div.innerText += key + ": " + response[key];
+                let body: HTMLElement = document.getElementsByTagName("body")[0];
+               let button: HTMLButtonElement = document.getElementsByTagName("button")[0];
+               body.appendChild(div);
             }
-            //alert("Deine Bestellung: " + response);
+            //alert("Deine Bestellung: " + div);
         }
     }
 }

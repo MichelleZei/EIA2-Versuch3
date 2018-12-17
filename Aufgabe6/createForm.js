@@ -112,7 +112,7 @@ var Aufgabe6;
         console.log(out);
         if (out.length == 1) {
             deleteoutput();
-            Aufgabe6.createURL = " ";
+            Aufgabe6.createURL = "?";
         }
         let sum = 0;
         for (let i = 0; i < inputs.length; i++) {

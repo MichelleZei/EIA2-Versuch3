@@ -20,11 +20,19 @@ var Aufgabe6;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let response = JSON.parse(xhr.response);
             console.log(response);
+            let div;
+            let hZwei = document.createElement("h2");
+            hZwei.innerText = "Deine Bestellung war erfolgreich. Du hast folgendes bestellt: ";
+            let hEins = document.getElementsByTagName("h1")[0];
+            let form = document.getElementsByTagName("form")[0];
+            hEins.appendChild(hZwei);
+            form.remove();
             for (let key in response) {
-                let div = document.createElement("div");
-                div.innerText = "Hi";
+                div = document.createElement("div");
+                div.innerText += key + ": " + response[key];
+                let body = document.getElementsByTagName("body")[0];
                 let button = document.getElementsByTagName("button")[0];
-                button.appendChild(div);
+                body.appendChild(div);
             }
         }
     }
