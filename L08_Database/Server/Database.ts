@@ -12,7 +12,7 @@ let students: Mongo.Collection;
 
 // running on heroku?
 if (process.env.NODE_ENV == "production") {
-    databaseURL = "mongodb://<dbuser>:<dbpassword>@ds149711.mlab.com:49711/eia2";
+    databaseURL = "mongodb://Nina:123456a@ds149711.mlab.com:49711/eia2";
     //databaseURL = "mongodb://testuser:testpassword@ds129532.mlab.com:29532/eia2";
     databaseName = "eia2";
 }
