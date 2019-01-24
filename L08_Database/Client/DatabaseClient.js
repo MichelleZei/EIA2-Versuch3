@@ -7,8 +7,24 @@ var DatabaseClient;
         console.log("Init");
         let insertButton = document.getElementById("insert");
         let refreshButton = document.getElementById("refresh");
+        let searchButton = document.getElementById("search");
+        searchButton.addEventListener("click", search);
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+    }
+    function search(_event) {
+        let inputs = document.getElementsByTagName("input");
+        let lastInputIndex = inputs.length - 1;
+        let query = "command=search";
+        query += "&matrikel=" + inputs[lastInputIndex].value;
+        console.log(query);
+        sendRequest(query, handleSearchResponse);
+    }
+    function handleSearchResponse(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.response);
+        }
     }
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");

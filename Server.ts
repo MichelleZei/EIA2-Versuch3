@@ -4,17 +4,7 @@ import * as Url from "url";
 namespace Aufgabe5 {
     console.log("Starting server");
 
-    interface Bestellung {
-        baumart: string;
-        rot: string;
-        gruen: string;
-        blau: string;
-        lametta: string;
-    }
-
-    interface Objekt {
-        [key: string]: string;
-    }
+ 
 
     let port: number = process.env.PORT;
     if (port == undefined)
