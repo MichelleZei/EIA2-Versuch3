@@ -36,9 +36,9 @@ export function insert(_doc: StudentData): void {
     students.insertOne(_doc, handleInsert);
 }
 
-export function findOne(_query: Matrikelnummer, _callback: Function): void {
+export function findOne(_matrikel: Matrikelnummer, _callback: Function): void {
     // cursor points to the retreived set of documents in memory
-    var cursor: Mongo.Cursor = students.find(_query);
+    var cursor: Mongo.Cursor = students.find(_matrikel);
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
 

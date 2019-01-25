@@ -32,9 +32,9 @@ function insert(_doc) {
     students.insertOne(_doc, handleInsert);
 }
 exports.insert = insert;
-function findOne(_query, _callback) {
+function findOne(_matrikel, _callback) {
     // cursor points to the retreived set of documents in memory
-    var cursor = students.find(_query);
+    var cursor = students.find(_matrikel);
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
     // toArray-handler receives two standard parameters, an error object and the array

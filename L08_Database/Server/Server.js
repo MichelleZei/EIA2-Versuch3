@@ -21,7 +21,6 @@ function handleRequest(_request, _response) {
     console.log("Request received");
     let query = Url.parse(_request.url, true).query;
     var command = query["command"];
-    let matrikel = query["matrikel"];
     switch (command) {
         case "insert":
             let student = {
@@ -33,6 +32,7 @@ function handleRequest(_request, _response) {
             respond(_response, "storing data");
             break;
         case "search":
+            let matrikel = { "matrikel": parseInt(query["matrikel"]) };
             Database.findOne(matrikel, findCallback);
             break;
         case "refresh":
