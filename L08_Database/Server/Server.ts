@@ -29,7 +29,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     let query: AssocStringString = Url.parse(_request.url, true).query;
     var command: string = query["command"];
-    let matrikel: string = query["matrikel"];
+
 
     switch (command) {
         case "insert":
@@ -42,7 +42,8 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             respond(_response, "storing data");
             break;
         case "search":
-            Database.findOne(matrikel,findCallback);
+            let matrikel: Matrikelnummer = {matrikel: parseInt(query["matrikel"])};
+            Database.findOne(matrikel, findCallback);
             break;
         case "refresh":
             Database.findAll(findCallback);
