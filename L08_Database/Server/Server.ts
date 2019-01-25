@@ -46,7 +46,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             Database.findOne(matrikel, findCallback);
             break;
         case "remove":
-            Database.removeOne(matrikel);
+            Database.removeOne(matrikel, findCallback);
             break;
         case "refresh":
             Database.findAll(findCallback);

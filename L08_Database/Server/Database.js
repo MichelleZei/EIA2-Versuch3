@@ -48,7 +48,7 @@ function findOne(_matrikel, _callback) {
     }
 }
 exports.findOne = findOne;
-function removeOne(_matrikel) {
+function removeOne(_matrikel, _callback) {
     // cursor points to the retreived set of documents in memory
     students.remove(_matrikel);
     // try to convert to array, then activate callback "prepareAnswer"
@@ -60,7 +60,7 @@ function removeOne(_matrikel) {
     //            _callback("Error" + _e);
     //        else
     //            // stringify creates a json-string, passed it back to _callback
-    //            _callback(JSON.stringify(studentArray));
+    _callback();
     //    }
 }
 exports.removeOne = removeOne;

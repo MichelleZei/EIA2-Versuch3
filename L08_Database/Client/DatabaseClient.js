@@ -14,13 +14,27 @@ var DatabaseClient;
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
     }
+    function sendRequest(_query, _callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", serverAddress + "?" + _query, true);
+        xhr.addEventListener("readystatechange", _callback);
+        xhr.send();
+    }
+    //Remove
     function remove(_event) {
         let input = document.getElementById("removeInput");
         let query = "command=remove";
         query += "&matrikel=" + input.value;
         console.log(query);
-        sendRequest(query, handleSearchResponse);
+        sendRequest(query, handleRemoveResponse);
     }
+    function handleRemoveResponse(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.response);
+        }
+    }
+    //Search
     function search(_event) {
         let input = document.getElementById("searchInput");
         let query = "command=search";
@@ -34,6 +48,7 @@ var DatabaseClient;
             alert(xhr.response);
         }
     }
+    //Insert
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");
         let query = "command=insert";
@@ -41,29 +56,18 @@ var DatabaseClient;
         query += "&firstname=" + inputs[1].value;
         query += "&matrikel=" + inputs[2].value;
         console.log(query);
-        sendRequestRemove(query);
-    }
-    function refresh(_event) {
-        let query = "command=refresh";
-        sendRequest(query, handleFindResponse);
-    }
-    function sendRequestRemove(_query) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", serverAddress + "?" + _query, true);
-        xhr.addEventListener("readystatechange", refresh);
-        xhr.send();
-    }
-    function sendRequest(_query, _callback) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", serverAddress + "?" + _query, true);
-        xhr.addEventListener("readystatechange", _callback);
-        xhr.send();
+        sendRequest(query, handleInsertResponse);
     }
     function handleInsertResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             alert(xhr.response);
         }
+    }
+    //Refresh
+    function refresh(_event) {
+        let query = "command=refresh";
+        sendRequest(query, handleFindResponse);
     }
     function handleFindResponse(_event) {
         let xhr = _event.target;
