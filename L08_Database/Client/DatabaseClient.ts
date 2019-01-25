@@ -4,6 +4,7 @@ namespace DatabaseClient {
     let serverAddress: string = "https://studi.herokuapp.com/";
 
     function init(_event: Event): void {
+
         console.log("Init");
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
         let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("refresh");
@@ -30,6 +31,7 @@ namespace DatabaseClient {
     }
 
     function insert(_event: Event): void {
+       
         let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
         let query: string = "command=insert";
         query += "&name=" + inputs[0].value;
