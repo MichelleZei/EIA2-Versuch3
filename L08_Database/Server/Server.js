@@ -36,7 +36,7 @@ function handleRequest(_request, _response) {
             Database.findOne(matrikel, findCallback);
             break;
         case "remove":
-            Database.findOne(matrikel, findCallback);
+            Database.removeOne(matrikel, findCallbackRemove);
             break;
         case "refresh":
             Database.findAll(findCallback);
@@ -49,6 +49,13 @@ function handleRequest(_request, _response) {
     function findCallback(json) {
         respond(_response, json);
     }
+    function findCallbackRemove() {
+        respondRemove(_response);
+    }
+}
+function respondRemove(_response) {
+    //console.log("Preparing response: " + _text);
+    _response.end();
 }
 function respond(_response, _text) {
     //console.log("Preparing response: " + _text);

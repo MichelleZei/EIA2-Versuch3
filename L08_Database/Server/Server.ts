@@ -46,7 +46,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             Database.findOne(matrikel, findCallback);
             break;
         case "remove":
-            Database.removeOne(matrikel, findCallback);
+            Database.removeOne(matrikel, findCallbackRemove);
             break;
         case "refresh":
             Database.findAll(findCallback);
@@ -60,8 +60,14 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
     function findCallback(json: string): void {
         respond(_response, json);
     }
+    function findCallbackRemove(): void {
+        respondRemove(_response);
+    }
 }
-
+function respondRemove(_response: Http.ServerResponse): void {
+    //console.log("Preparing response: " + _text);
+    _response.end();
+}
 function respond(_response: Http.ServerResponse, _text: string): void {
     //console.log("Preparing response: " + _text);
     _response.setHeader("Access-Control-Allow-Origin", "*");
