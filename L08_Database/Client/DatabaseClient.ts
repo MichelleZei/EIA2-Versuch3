@@ -9,11 +9,21 @@ namespace DatabaseClient {
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
         let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("refresh");
         let searchButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("search");
+        let removeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("remove");
+        removeButton.addEventListener("click", remove);
         searchButton.addEventListener("click", search);
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
     }
-
+    
+    function remove(_event: Event): void {
+        let input: HTMLInputElement = <HTMLInputElement>document.getElementById("removeInput");
+        let query: string = "command=remove";
+        query += "&matrikel=" + input.value;
+        console.log(query);
+        sendRequest(query, handleSearchResponse);
+    }
+    
     function search(_event: Event): void {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById("searchInput");
         let query: string = "command=search";

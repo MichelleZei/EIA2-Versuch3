@@ -53,6 +53,23 @@ export function findOne(_matrikel: Matrikelnummer, _callback: Function): void {
     }
 }
 
+export function removeOne(_matrikel: Matrikelnummer, _callback: Function): void {
+    // cursor points to the retreived set of documents in memory
+    students.remove(_matrikel);
+    // try to convert to array, then activate callback "prepareAnswer"
+    //cursor.toArray(prepareAnswer);
+
+    // toArray-handler receives two standard parameters, an error object and the array
+    // implemented as inner function, so _callback is in scope
+//    function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
+//        if (_e)
+//            _callback("Error" + _e);
+//        else
+//            // stringify creates a json-string, passed it back to _callback
+//            _callback(JSON.stringify(studentArray));
+//    }
+}
+
 
 // insertion-handler receives an error object as standard parameter
 function handleInsert(_e: Mongo.MongoError): void {

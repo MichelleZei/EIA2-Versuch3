@@ -8,9 +8,18 @@ var DatabaseClient;
         let insertButton = document.getElementById("insert");
         let refreshButton = document.getElementById("refresh");
         let searchButton = document.getElementById("search");
+        let removeButton = document.getElementById("remove");
+        removeButton.addEventListener("click", remove);
         searchButton.addEventListener("click", search);
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+    }
+    function remove(_event) {
+        let input = document.getElementById("removeInput");
+        let query = "command=remove";
+        query += "&matrikel=" + input.value;
+        console.log(query);
+        sendRequest(query, handleSearchResponse);
     }
     function search(_event) {
         let input = document.getElementById("searchInput");
