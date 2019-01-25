@@ -42,10 +42,12 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             respond(_response, "storing data");
             break;
         case "search":
+            let matrikel: Matrikelnummer = { "matrikel": parseInt(query["matrikel"]) };
             Database.findOne(matrikel, findCallback);
             break;
         case "remove":
-            Database.removeOne(matrikel, respondRemove);
+            let matrikelRemove: Matrikelnummer = { "matrikel": parseInt(query["matrikel"]) };
+            Database.removeOne(matrikelRemove, respondRemove);
             break;
         case "refresh":
             Database.findAll(findCallback);

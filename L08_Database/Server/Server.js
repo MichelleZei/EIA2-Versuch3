@@ -33,10 +33,12 @@ function handleRequest(_request, _response) {
             respond(_response, "storing data");
             break;
         case "search":
+            let matrikel = { "matrikel": parseInt(query["matrikel"]) };
             Database.findOne(matrikel, findCallback);
             break;
         case "remove":
-            Database.removeOne(matrikel, respondRemove);
+            let matrikelRemove = { "matrikel": parseInt(query["matrikel"]) };
+            Database.removeOne(matrikelRemove, respondRemove);
             break;
         case "refresh":
             Database.findAll(findCallback);
