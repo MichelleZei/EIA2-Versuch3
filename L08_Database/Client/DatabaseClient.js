@@ -13,10 +13,9 @@ var DatabaseClient;
         refreshButton.addEventListener("click", refresh);
     }
     function search(_event) {
-        let inputs = document.getElementsByTagName("input");
-        let lastInputIndex = inputs.length - 1;
+        let input = document.getElementById("searchInput");
         let query = "command=search";
-        query += "&matrikel=" + inputs[lastInputIndex].value;
+        query += "&matrikel=" + input.value;
         console.log(query);
         sendRequest(query, handleSearchResponse);
     }

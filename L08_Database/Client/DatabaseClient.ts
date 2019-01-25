@@ -15,10 +15,9 @@ namespace DatabaseClient {
     }
 
     function search(_event: Event): void {
-        let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
-        let lastInputIndex: number = inputs.length -1; 
+        let input: HTMLInputElement = <HTMLInputElement>document.getElementById("searchInput");
         let query: string = "command=search";
-        query += "&matrikel=" + inputs[lastInputIndex].value;
+        query += "&matrikel=" + input.value;
         console.log(query);
         sendRequest(query, handleSearchResponse);
     }
