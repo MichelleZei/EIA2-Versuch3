@@ -21,6 +21,7 @@ function handleRequest(_request, _response) {
     console.log("Request received");
     let query = Url.parse(_request.url, true).query;
     var command = query["command"];
+    let matrikel = { "matrikel": parseInt(query["matrikel"]) };
     switch (command) {
         case "insert":
             let student = {
@@ -32,11 +33,10 @@ function handleRequest(_request, _response) {
             respond(_response, "storing data");
             break;
         case "search":
-            let matrikel = { "matrikel": parseInt(query["matrikel"]) };
             Database.findOne(matrikel, findCallback);
             break;
         case "remove":
-            Database.removeOne(matrikel, findCallbackRemove);
+            Database.removeOne(matrikel, respondRemove);
             break;
         case "refresh":
             Database.findAll(findCallback);
@@ -49,9 +49,9 @@ function handleRequest(_request, _response) {
     function findCallback(json) {
         respond(_response, json);
     }
-    function findCallbackRemove() {
-        respondRemove(_response);
-    }
+    //    function findCallbackRemove(): void {
+    //        respondRemove(_response);
+    //    }
 }
 function respondRemove(_response) {
     //console.log("Preparing response: " + _text);

@@ -29,7 +29,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
 
     let query: AssocStringString = Url.parse(_request.url, true).query;
     var command: string = query["command"];
-
+    let matrikel: Matrikelnummer = { "matrikel": parseInt(query["matrikel"]) };
 
     switch (command) {
         case "insert":
@@ -42,11 +42,10 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
             respond(_response, "storing data");
             break;
         case "search":
-            let matrikel: Matrikelnummer = { "matrikel": parseInt(query["matrikel"]) };
             Database.findOne(matrikel, findCallback);
             break;
         case "remove":
-            Database.removeOne(matrikel, findCallbackRemove);
+            Database.removeOne(matrikel, respondRemove);
             break;
         case "refresh":
             Database.findAll(findCallback);
@@ -60,9 +59,9 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
     function findCallback(json: string): void {
         respond(_response, json);
     }
-    function findCallbackRemove(): void {
-        respondRemove(_response);
-    }
+    //    function findCallbackRemove(): void {
+    //        respondRemove(_response);
+    //    }
 }
 function respondRemove(_response: Http.ServerResponse): void {
     //console.log("Preparing response: " + _text);
