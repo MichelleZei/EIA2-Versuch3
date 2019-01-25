@@ -53,7 +53,7 @@ export function findOne(_matrikel: Matrikelnummer, _callback: Function): void {
     }
 }
 
-export function removeOne(_matrikel: Matrikelnummer, _callback: Function): void {
+export function removeOne(_matrikel: Matrikelnummer): void {
     // cursor points to the retreived set of documents in memory
     students.remove(_matrikel);
     // try to convert to array, then activate callback "prepareAnswer"

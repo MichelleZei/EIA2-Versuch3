@@ -48,7 +48,7 @@ function findOne(_matrikel, _callback) {
     }
 }
 exports.findOne = findOne;
-function removeOne(_matrikel, _callback) {
+function removeOne(_matrikel) {
     // cursor points to the retreived set of documents in memory
     students.remove(_matrikel);
     // try to convert to array, then activate callback "prepareAnswer"

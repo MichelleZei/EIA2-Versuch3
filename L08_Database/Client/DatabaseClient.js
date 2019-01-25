@@ -41,11 +41,17 @@ var DatabaseClient;
         query += "&firstname=" + inputs[1].value;
         query += "&matrikel=" + inputs[2].value;
         console.log(query);
-        sendRequest(query, handleInsertResponse);
+        sendRequestRemove(query);
     }
     function refresh(_event) {
         let query = "command=refresh";
         sendRequest(query, handleFindResponse);
+    }
+    function sendRequestRemove(_query) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", serverAddress + "?" + _query, true);
+        xhr.addEventListener("readystatechange", refresh);
+        xhr.send();
     }
     function sendRequest(_query, _callback) {
         let xhr = new XMLHttpRequest();

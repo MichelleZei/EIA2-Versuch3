@@ -15,7 +15,7 @@ namespace DatabaseClient {
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
     }
-    
+
     function remove(_event: Event): void {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById("removeInput");
         let query: string = "command=remove";
@@ -23,7 +23,7 @@ namespace DatabaseClient {
         console.log(query);
         sendRequest(query, handleSearchResponse);
     }
-    
+
     function search(_event: Event): void {
         let input: HTMLInputElement = <HTMLInputElement>document.getElementById("searchInput");
         let query: string = "command=search";
@@ -31,8 +31,8 @@ namespace DatabaseClient {
         console.log(query);
         sendRequest(query, handleSearchResponse);
     }
-    
-    function handleSearchResponse(_event: ProgressEvent): void{
+
+    function handleSearchResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             alert(xhr.response);
@@ -40,28 +40,35 @@ namespace DatabaseClient {
     }
 
     function insert(_event: Event): void {
-       
+
         let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
         let query: string = "command=insert";
         query += "&name=" + inputs[0].value;
         query += "&firstname=" + inputs[1].value;
         query += "&matrikel=" + inputs[2].value;
         console.log(query);
-        sendRequest(query, handleInsertResponse);
+        sendRequestRemove(query);
     }
 
     function refresh(_event: Event): void {
         let query: string = "command=refresh";
         sendRequest(query, handleFindResponse);
     }
-
+    
+    function sendRequestRemove(_query: string): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", serverAddress + "?" + _query, true);
+        xhr.addEventListener("readystatechange", refresh);
+        xhr.send();
+    }
+    
     function sendRequest(_query: string, _callback: EventListener): void {
         let xhr: XMLHttpRequest = new XMLHttpRequest();
         xhr.open("GET", serverAddress + "?" + _query, true);
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }
-
+    
     function handleInsertResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
