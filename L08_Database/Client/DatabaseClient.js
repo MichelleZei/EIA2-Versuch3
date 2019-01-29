@@ -2,13 +2,16 @@ var DatabaseClient;
 (function (DatabaseClient) {
     window.addEventListener("load", init);
     //let serverAddress: string = "http://localhost:8100";
+    //Adresse zum Server
     let serverAddress = "https://ws1819.herokuapp.com/";
     function init(_event) {
         console.log("Init");
+        //Variablen f�r die Buttons deklarieren und darin den jeweiligen HTMLButton mit Hilfe der Id speichern
         let insertButton = document.getElementById("insert");
         let refreshButton = document.getElementById("refresh");
         let searchButton = document.getElementById("search");
         let removeButton = document.getElementById("remove");
+        //EventListener auf den Buttons
         removeButton.addEventListener("click", remove);
         searchButton.addEventListener("click", search);
         insertButton.addEventListener("click", insert);
@@ -20,7 +23,7 @@ var DatabaseClient;
         xhr.addEventListener("readystatechange", _callback);
         xhr.send();
     }
-    //Remove
+    //Remove wird beim klicken auf den Remove-Button ausgel�st
     function remove(_event) {
         let input = document.getElementById("removeInput");
         let query = "command=remove";
@@ -31,7 +34,8 @@ var DatabaseClient;
     function handleRemoveResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
+            //wenn die Request anfrage erledigt ist, erscheint eine alertbox
+            alert("Du hast den Studenten mit der Matrikelnummer erfolgreich gel�scht.");
         }
     }
     //Search
@@ -45,6 +49,7 @@ var DatabaseClient;
     function handleSearchResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            //wenn die Request anfrage erledigt ist, erscheint eine alertbox mit dem namen, firstname und matrikel des gesuchten Studenten
             alert(xhr.response);
         }
     }
@@ -61,6 +66,7 @@ var DatabaseClient;
     function handleInsertResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            //wenn die Request anfrage erledigt ist, erscheint eine alertbox mit "storing data"
             alert(xhr.response);
         }
     }
@@ -73,9 +79,12 @@ var DatabaseClient;
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output = document.getElementsByTagName("textarea")[0];
+            //alle gefundenen Studenten werden in der textarea mit id, name, firstname und matrikel angezeigt
             output.value = xhr.response;
-            let responseAsJson = JSON.parse(xhr.response);
-            console.log(responseAsJson);
+            let response = JSON.parse(xhr.response);
+            for (let key in response) {
+                console.log(key + " :" + response[key]);
+            }
         }
     }
 })(DatabaseClient || (DatabaseClient = {}));

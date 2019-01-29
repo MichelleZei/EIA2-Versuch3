@@ -99,10 +99,15 @@ var Aufgabe6;
         form.appendChild(button);
     }
     function createOutput(_sum) {
+        // ein neues OutputElement wird kreiert
         let output = document.createElement("output");
+        // das Element bekommt eine ID
         output.id = "out";
+        // un es wird "Warenkorb" und die Summe hineingeschrieben
         output.innerText = "Warenkorb: " + _sum;
+        // das Form element wird geholt
         let form = document.getElementById("form");
+        //dem Form wird das outputfeld angeh�ngt
         form.appendChild(output);
     }
     function handleChange(_event) {
@@ -115,34 +120,50 @@ var Aufgabe6;
             Aufgabe6.createURL = "?";
         }
         let sum = 0;
+        //geht alle Inputs durch
         for (let i = 0; i < inputs.length; i++) {
+            //holt sich den Preis von jedem input, der durch das Attribute "preis" gespeichert wurde
             let preis = parseFloat(inputs[i].getAttribute("preis"));
+            //holt sich den Namen jedes Inputs
             let name = inputs[i].name;
+            //Wenn der Preis nicht gleich null ist, dann
             if (inputs[i].getAttribute("preis") != null) {
+                //Wird, wenn der Value des Inputs nicht leer ist und der Value gr��er null ist
                 if (inputs[i].value != " " && parseFloat(inputs[i].value) > 0) {
+                    //Der preis mal die anzahl der gewollten Artikel auf den Preis aufgerechnet
                     sum += preis * parseFloat(inputs[i].value);
                     console.log("Preis: " + preis * parseFloat(inputs[i].value) + " Name: " + name);
                     Aufgabe6.createURL += name + "=" + parseFloat(inputs[i].value) + "&";
                 }
+                // Wenn der ein input angeklickt wurde, dann
                 if (inputs[i].checked) {
+                    //wird auch dieser preis auf die Summe aufgerechnet
                     sum += preis;
                     Aufgabe6.createURL += name + "=" + preis + "&";
                 }
             }
         }
+        //holt sich alle option
         let option = document.body.querySelectorAll("option");
+        //geht alle option durch
         for (let i = 0; i < option.length; i++) {
+            //Wenn die option[i] angeklickt wurde, dann
             if (option[i].selected == true) {
+                // holt man sich den preis durch getAttribute
                 let optpreis = parseFloat(option[i].getAttribute("preis"));
+                // und rechnet den preis auf die Summe auf
                 sum += optpreis;
                 Aufgabe6.createURL += option[i].id + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
             }
         }
         console.log(Aufgabe6.createURL);
+        // die Fkt createOutput wird aufgerufen mit sum als Parameter
         createOutput(sum);
     }
     function deleteoutput() {
+        // das HTMLElement out holen
         let deleteout = document.getElementById("out");
+        //und es l�schen
         deleteout.remove();
     }
 })(Aufgabe6 || (Aufgabe6 = {}));

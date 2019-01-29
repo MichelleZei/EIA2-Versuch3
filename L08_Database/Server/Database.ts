@@ -12,8 +12,11 @@ let students: Mongo.Collection;
 
 // running on heroku?
 if (process.env.NODE_ENV == "production") {
+    //Url zur Datenbank
     databaseURL = "mongodb://Nina:123456a@ds149711.mlab.com:49711/eia2";
     //databaseURL = "mongodb://testuser:testpassword@ds129532.mlab.com:29532/eia2";
+    
+    //Wie heiﬂt die Datenbank
     databaseName = "eia2";
 }
 
@@ -27,6 +30,7 @@ function handleConnect(_e: Mongo.MongoError, _db: Mongo.Db): void {
     else {
         console.log("Connected to database!");
         db = _db.db(databaseName);
+        //es wird auf die Collection students zugegriffen
         students = db.collection("students");
     }
 }
@@ -65,7 +69,7 @@ export function removeOne(_matrikel: Matrikelnummer, _callback: Function): void 
         if (_e)
             _callback("Error" + _e);
         else
-//            // stringify creates a json-string, passed it back to _callback
+//            //back to _callback
             _callback();
     }
 }

@@ -122,12 +122,15 @@ namespace Aufgabe6 {
     }
 
     function createOutput(_sum: number): void {
-
+        // ein neues OutputElement wird kreiert
         let output: HTMLElement = document.createElement("output");
+        // das Element bekommt eine ID
         output.id = "out";
+        // un es wird "Warenkorb" und die Summe hineingeschrieben
         output.innerText = "Warenkorb: " + _sum;
-
+        // das Form element wird geholt
         let form: HTMLElement = document.getElementById("form");
+        //dem Form wird das outputfeld angehängt
         form.appendChild(output);
     }
 
@@ -146,39 +149,52 @@ namespace Aufgabe6 {
 
         let sum: number = 0;
 
+        //geht alle Inputs durch
         for (let i: number = 0; i < inputs.length; i++) {
+            //holt sich den Preis von jedem input, der durch das Attribute "preis" gespeichert wurde
             let preis: number = parseFloat(inputs[i].getAttribute("preis"));
+            //holt sich den Namen jedes Inputs
             let name: string = inputs[i].name;
+            //Wenn der Preis nicht gleich null ist, dann
             if (inputs[i].getAttribute("preis") != null) {
+                //Wird, wenn der Value des Inputs nicht leer ist und der Value größer null ist
                 if (inputs[i].value != " " && parseFloat(inputs[i].value) > 0) {
+                    //Der preis mal die anzahl der gewollten Artikel auf den Preis aufgerechnet
                     sum += preis * parseFloat(inputs[i].value);
                     console.log("Preis: " + preis * parseFloat(inputs[i].value) + " Name: " + name);
                     createURL += name + "=" + parseFloat(inputs[i].value) + "&";
                 }
+                // Wenn der ein input angeklickt wurde, dann
                 if (inputs[i].checked) {
+                    //wird auch dieser preis auf die Summe aufgerechnet
                     sum += preis;
                     createURL += name + "=" + preis + "&";
 
                 }
             }
         }
-
+        //holt sich alle option
         let option: NodeListOf<HTMLOptionElement> = <NodeListOf<HTMLOptionElement>>document.body.querySelectorAll("option");
+        //geht alle option durch
         for (let i: number = 0; i < option.length; i++) {
+            //Wenn die option[i] angeklickt wurde, dann
             if (option[i].selected == true) {
-
+                // holt man sich den preis durch getAttribute
                 let optpreis: number = parseFloat(option[i].getAttribute("preis"));
+                // und rechnet den preis auf die Summe auf
                 sum += optpreis;
                 createURL += option[i].id + "=" + parseFloat(option[i].getAttribute("preis")) + "&";
             }
         }
         console.log(createURL);
+        // die Fkt createOutput wird aufgerufen mit sum als Parameter
         createOutput(sum);
     }
 
     function deleteoutput(): void {
+        // das HTMLElement out holen
         let deleteout: HTMLElement = document.getElementById("out");
-
+        //und es löschen
         deleteout.remove();
     }
 
