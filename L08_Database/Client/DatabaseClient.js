@@ -80,11 +80,12 @@ var DatabaseClient;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let output = document.getElementsByTagName("textarea")[0];
             //alle gefundenen Studenten werden in der textarea mit id, name, firstname und matrikel angezeigt
-            output.value = xhr.response;
             let response = JSON.parse(xhr.response);
             for (let key in response) {
                 for (let i = 0; i < response[key].length; i++) {
-                    console.log(key + " :" + response[key]);
+                    console.log(key + ": " + response[key][i].name + ": " + response[key][i].firstname + ": " + response[key][i].matrikel);
+                    //output.value = xhr.response;
+                    output.value = key + ": " + response[key][i].name + ": " + response[key][i].firstname + ": " + response[key][i].matrikel;
                 }
             }
         }

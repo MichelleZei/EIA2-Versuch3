@@ -3,11 +3,11 @@ namespace DatabaseClient {
     //let serverAddress: string = "http://localhost:8100";
     //Adresse zum Server
     let serverAddress: string = "https://ws1819.herokuapp.com/";
-    
+
     interface Objekt {
         [key: string]: StudentData[];
     }
-    
+
     function init(_event: Event): void {
 
         console.log("Init");
@@ -98,14 +98,16 @@ namespace DatabaseClient {
             let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
 
             //alle gefundenen Studenten werden in der textarea mit id, name, firstname und matrikel angezeigt
-            output.value = xhr.response;
-            let response: Objekt = JSON.parse(xhr.response);
-            for( let key in response){
-                for(let i: number = 0; i< response[key].length; i++){
-                console.log(key + " :" + response[key]);
-            }
-                }
             
+            let response: Objekt = JSON.parse(xhr.response);
+            for (let key in response) {
+                for (let i: number = 0; i < response[key].length; i++) {
+                    console.log(key + ": " + response[key][i].name + ": " + response[key][i].firstname + ": " + response[key][i].matrikel );
+                    //output.value = xhr.response;
+                    output.value = key + ": " + response[key][i].name + ": " + response[key][i].firstname + ": " + response[key][i].matrikel ;
+                }
+            }
+
             //            let responseAsString: string = JSON.stringify(responseAsJson);
             //            var arrayOfString = responseAsString.split('"');
             //            arrayOfString.splice(0,5);
