@@ -83,7 +83,9 @@ var DatabaseClient;
             output.value = xhr.response;
             let response = JSON.parse(xhr.response);
             for (let key in response) {
-                console.log(key + " :" + response[key]);
+                for (let i = 0; i < response[key].length; i++) {
+                    console.log(key + " :" + response[key]);
+                }
             }
         }
     }

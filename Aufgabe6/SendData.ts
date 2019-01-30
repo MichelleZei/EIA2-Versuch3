@@ -26,7 +26,9 @@ namespace Aufgabe6 {
         var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             
-       
+            //der string xhr.response wird in ein JavaScript Object verwandelt
+            //{"name":"M", "fistname":"Z", "age":"21"} wird zu:
+            // neme: "M", firstname:Z, age:21
             let response: Objekt = JSON.parse(xhr.response);
             console.log(response);
             let div: HTMLDivElement;

@@ -5,7 +5,7 @@ namespace DatabaseClient {
     let serverAddress: string = "https://ws1819.herokuapp.com/";
     
     interface Objekt {
-        [key: string]: number;
+        [key: string]: StudentData[];
     }
     
     function init(_event: Event): void {
@@ -101,8 +101,10 @@ namespace DatabaseClient {
             output.value = xhr.response;
             let response: Objekt = JSON.parse(xhr.response);
             for( let key in response){
+                for(let i: number = 0; i< response[key].length; i++){
                 console.log(key + " :" + response[key]);
             }
+                }
             
             //            let responseAsString: string = JSON.stringify(responseAsJson);
             //            var arrayOfString = responseAsString.split('"');

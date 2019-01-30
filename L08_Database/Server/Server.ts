@@ -9,6 +9,7 @@ import * as Database from "./Database";
 
 console.log("Server starting");
 
+//env: info über die Umgebung
 let port: number = process.env.PORT;
 if (port == undefined)
     port = 8100;
@@ -19,7 +20,6 @@ let server: Http.Server = Http.createServer();
 server.addListener("listening", handleListen);
 //der Server reagiert auf eine eingehende Nachricht
 server.addListener("request", handleRequest);
-
 //dem Server wird gesagt, auf welchen Port er hören soll
 server.listen(port);
 
@@ -30,12 +30,13 @@ function handleListen(): void {
 }
 
 //zwei Parameter müssen dem handleRequest übergeben werden: _request und _response
-//IncomingMessage wird vom Server automatisch erstellt und als erster Parameter an den requestListener gesendet
-//ServerResponse wird vom Server automatisch erstellt und als zweiter Parameter an den requestListener gesendet
+//IncomingMessage wird vom Server automatisch erstellt und als erster Parameter an den requestListener gesendet. Beinhaltet die url als string mit der der Server angefragt wurde(mit DateiPfad und dem search-string)
+//ServerResponse wird vom Server automatisch erstellt und als zweiter Parameter an den requestListener gesendet. Beinhaltet setHeader, write und end().
 function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
     console.log("Request received");
 
-    //Die Url, die mit dem request ankommt, wird auseinander gelegt und in query gespeichert
+    //Die Url, die mit dem request ankommt, wird auseinander gelegt mit dem Typ AssocStringString und in query gespeichert
+    // Url wird in ein JsonObjekt umgewandelt
     let query: AssocStringString = Url.parse(_request.url, true).query;
     
     //Der Teil der Url mit "command" wird in command gespeichert
@@ -46,6 +47,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
         case "insert":
             //dann werden die folgenden Teile der Url in der Variable student vom Typ StudentData gespeichert
             let student: StudentData = {
+                //Key name Value query["name"]
                 name: query["name"],
                 firstname: query["firstname"],
                 matrikel: parseInt(query["matrikel"])

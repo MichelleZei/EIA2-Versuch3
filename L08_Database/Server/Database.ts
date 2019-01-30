@@ -30,7 +30,7 @@ function handleConnect(_e: Mongo.MongoError, _db: Mongo.Db): void {
     else {
         console.log("Connected to database!");
         db = _db.db(databaseName);
-        //es wird auf die Collection students zugegriffen
+        //es wird eine Collection students angelegt und in der Variable students gespeichert
         students = db.collection("students");
     }
 }
@@ -42,8 +42,11 @@ export function insert(_doc: StudentData): void {
 
 export function findOne(_matrikel: Matrikelnummer, _callback: Function): void {
     // cursor points to the retreived set of documents in memory
+    // student.find ist der Suchbefehl
+    // der gefundene Student wird in cursor gespeichert und beinhaltet eine Untermenge von Daten des Suchbefehls
     var cursor: Mongo.Cursor = students.find(_matrikel);
     // try to convert to array, then activate callback "prepareAnswer"
+    //kreiert ein JavaScript Array von den Objekten des Cursors
     cursor.toArray(prepareAnswer);
 
     // toArray-handler receives two standard parameters, an error object and the array

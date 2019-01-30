@@ -26,7 +26,7 @@ function handleConnect(_e, _db) {
     else {
         console.log("Connected to database!");
         db = _db.db(databaseName);
-        //es wird auf die Collection students zugegriffen
+        //es wird eine Collection students angelegt und in der Variable students gespeichert
         students = db.collection("students");
     }
 }
@@ -37,8 +37,11 @@ function insert(_doc) {
 exports.insert = insert;
 function findOne(_matrikel, _callback) {
     // cursor points to the retreived set of documents in memory
+    // student.find ist der Suchbefehl
+    // der gefundene Student wird in cursor gespeichert und beinhaltet eine Untermenge von Daten des Suchbefehls
     var cursor = students.find(_matrikel);
     // try to convert to array, then activate callback "prepareAnswer"
+    //kreiert ein JavaScript Array von den Objekten des Cursors
     cursor.toArray(prepareAnswer);
     // toArray-handler receives two standard parameters, an error object and the array
     // implemented as inner function, so _callback is in scope

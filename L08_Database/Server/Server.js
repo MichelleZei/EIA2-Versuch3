@@ -7,6 +7,7 @@ const Http = require("http");
 const Url = require("url");
 const Database = require("./Database");
 console.log("Server starting");
+//env: info �ber die Umgebung
 let port = process.env.PORT;
 if (port == undefined)
     port = 8100;
@@ -22,11 +23,12 @@ function handleListen() {
     console.log("Listening on port: " + port);
 }
 //zwei Parameter m�ssen dem handleRequest �bergeben werden: _request und _response
-//IncomingMessage wird vom Server automatisch erstellt und als erster Parameter an den requestListener gesendet
-//ServerResponse wird vom Server automatisch erstellt und als zweiter Parameter an den requestListener gesendet
+//IncomingMessage wird vom Server automatisch erstellt und als erster Parameter an den requestListener gesendet. Beinhaltet die url als string mit der der Server angefragt wurde(mit DateiPfad und dem search-string)
+//ServerResponse wird vom Server automatisch erstellt und als zweiter Parameter an den requestListener gesendet. Beinhaltet setHeader, write und end().
 function handleRequest(_request, _response) {
     console.log("Request received");
-    //Die Url, die mit dem request ankommt, wird auseinander gelegt und in query gespeichert
+    //Die Url, die mit dem request ankommt, wird auseinander gelegt mit dem Typ AssocStringString und in query gespeichert
+    // Url wird in ein JsonObjekt umgewandelt
     let query = Url.parse(_request.url, true).query;
     //Der Teil der Url mit "command" wird in command gespeichert
     var command = query["command"];
@@ -35,6 +37,7 @@ function handleRequest(_request, _response) {
         case "insert":
             //dann werden die folgenden Teile der Url in der Variable student vom Typ StudentData gespeichert
             let student = {
+                //Key name Value query["name"]
                 name: query["name"],
                 firstname: query["firstname"],
                 matrikel: parseInt(query["matrikel"])
